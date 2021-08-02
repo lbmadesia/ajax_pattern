@@ -29,14 +29,15 @@ function callAjax(type,url,data,btn,alert,funName){
       },
       error : function(xhr){
           $(btn).removeAttr('disabled');
+         var aData = {"status":false,"data":xhr};
+          funName(aData);
           $(alert).html(` <div class="alert alert-danger alert-dismissible">
           <button type="button" class="close" data-dismiss="alert">&times;</button>`+ xhr.responseJSON.message + `.
         </div>`);
           setTimeout(() => {
             $(alert).html('');
         }, 10000);
-        var aData = {"status":false,"data":xhr};
-          funName(aData);
+       
         }
    });
 }
